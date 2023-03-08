@@ -1,0 +1,42 @@
+﻿@model Security.Domain.DTO.RoleAction.RoleActionAddModel
+
+<h4>RoleActionAddModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Default" id="frmAddnew">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RoleID" class="control-label"></label>
+                <select asp-for="RoleID" asp-items=@ViewBag.drpRole class="form-control"></select>
+                <span asp-validation-for="RoleID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectActionID" class="control-label"></label>
+                <select asp-for="ProjectActionID" asp-items=@ViewBag.ProjectAction class="form-control"></select>
+                <span asp-validation-for="ProjectActionID" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasPermission" /> @Html.DisplayNameFor(model => model.HasPermission)
+                </label>
+            </div>
+            <div class="form-group">
+                <span type="submit" id="btnAddNew" class="btn btn-primary mt-2"
+                      data-action='@Url.Action("AddNewRoleAction","RoleActionManegment")'
+                      data-form="frmAddnew" data-method="post"
+                      data-action-BindGrid='@Url.Action("RoleActionListAction","RoleActionManegment")'
+                      data-action-RefreshGrid='@Url.Action("RoleActionSearchBoxAction","RoleActionManegment")'
+                      >ثبت</span>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

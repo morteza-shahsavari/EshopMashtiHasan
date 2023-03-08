@@ -1,0 +1,15 @@
+﻿@model Security.Domain.DTO.ProjectAction.ProjectActionSearchModel
+
+<div id="dvSearch">
+   @await Component.InvokeAsync("ProjectActionSearchBox",this.Model)
+</div>
+<div id="dvGrid">
+    @await Component.InvokeAsync("ProjectActionList",this.Model)
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

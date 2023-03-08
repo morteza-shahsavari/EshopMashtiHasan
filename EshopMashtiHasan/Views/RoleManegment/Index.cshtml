@@ -1,0 +1,13 @@
+﻿@model Security.Domain.DTO.Role.RoleSearchModel
+<div id="dvSearch">
+    @await Component.InvokeAsync("RoleSearchBox",this.Model)
+</div>
+<div id="dvGrid">
+    @await Component.InvokeAsync("RoleList",this.Model)
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

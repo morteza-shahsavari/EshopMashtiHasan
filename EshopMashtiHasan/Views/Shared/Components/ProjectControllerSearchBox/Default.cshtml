@@ -1,0 +1,38 @@
+﻿@model Security.Domain.DTO.ProjectController.ProjectControllerSearchModel
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Default" id="frmSearch">
+            
+            <div class="form-group">
+                <label asp-for="ProjectControllerID" class="control-label"></label>
+                <input asp-for="ProjectControllerID" class="form-control" data-action='@Url.Action("ProjectControllerListAction", "ProjectControllerManegment")' data-search="search" />
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectControllerName" class="control-label"></label>
+                <input asp-for="ProjectControllerName" class="form-control" data-action='@Url.Action("ProjectControllerListAction", "ProjectControllerManegment")' data-search="search" />
+               
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectAreaID" class="control-label"></label>
+                <select asp-for="ProjectAreaID" asp-items=@ViewBag.drpArea class="form-control" data-action='@Url.Action("ProjectControllerListAction", "ProjectControllerManegment")' data-search="search"></select>
+                
+            </div>
+       
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary mt-2" />
+                <a href="#" class="btn btn-success mt-2" id="btnAddNew" data-action='@Url.Action("AddNew","ProjectControllerManegment")' data-container="dvContent" data-modal-id="exampleModal" data-showAddModel="showAddModel">ثبت جدید</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

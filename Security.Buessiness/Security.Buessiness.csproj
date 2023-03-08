@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <ApplicationManifest>Impelements\UserBuss.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Framework\Framework.csproj" />
+    <ProjectReference Include="..\Security.BussinessServiceContract\Security.BussinessServiceContract.csproj" />
+    <ProjectReference Include="..\Security.DataAcceServiesContract\Security.DataAcceServiesContract.csproj" />
+    <ProjectReference Include="..\Security.DataAccess\Security.DataAccess.csproj" />
+    <ProjectReference Include="..\Security.Framework\Security.Framework.csproj" />
+  </ItemGroup>
+
+</Project>

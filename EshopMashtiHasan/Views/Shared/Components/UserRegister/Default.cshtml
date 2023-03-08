@@ -1,0 +1,65 @@
+﻿@model Security.Domain.DTO.User.UserAddModel
+
+<h4>UserAddModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Default" id="frmAddnew">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mobile" class="control-label"></label>
+                <input asp-for="Mobile" class="form-control" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsEmailActivated" /> @Html.DisplayNameFor(model => model.IsEmailActivated)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoleID" class="control-label"></label>
+                <select asp-for="RoleID" asp-items=@ViewBag.drpRole class="form-control"></select>
+                <span asp-validation-for="RoleID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <span type="submit" id="btnAddNew" class="btn btn-primary "
+                      data-action='@Url.Action("AddNewUser","UserManegment")'
+                      data-form="frmAddnew" data-method="post"
+                      data-action-BindGrid='@Url.Action("UserListAction","UserManegment")'
+                      data-action-RefreshGrid='@Url.Action("UserSearchBoxAction","UserManegment")'
+                     >ثبت</span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

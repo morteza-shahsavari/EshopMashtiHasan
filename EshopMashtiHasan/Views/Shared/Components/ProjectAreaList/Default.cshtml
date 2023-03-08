@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Security.Domain.DTO.ProjectArea.ProjectAreaListItem>
+
+
+@if (Model == null || Model.Count() == 0)
+{
+    <h4 class="text-danger text-center">
+        No Area
+    </h4>
+}
+else
+{
+<table class="table table-striped table-hover table-striped mt-2">
+        <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectAreaID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AreaName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersianTitle)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+                <tr id="tr_@item.ProjectAreaID">
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectAreaID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AreaName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersianTitle)
+            </td>
+            <td>
+                        <span class="btn btn-danger btnDelete" data-id="@item.ProjectAreaID" data-action='@Url.Action("RemoveProjectArea","ProjectAreaManegment")'
+                      data-action-BindGrid='@Url.Action("ProjectAreaListAction","ProjectAreaManegment")'
+                      data-action-RefreshGrid='@Url.Action("ProjectAreaSearchBoxAction","ProjectAreaManegment")' data-Delete="Delete">Delete</span>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+}

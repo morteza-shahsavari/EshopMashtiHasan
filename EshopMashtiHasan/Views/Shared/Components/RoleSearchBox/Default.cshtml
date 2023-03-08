@@ -1,0 +1,28 @@
+﻿@model Security.Domain.DTO.Role.RoleSearchModel
+<script src="~/js/javaascript.js"></script>
+<h4>RoleSearchModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Default" id="frmSearch">
+           
+            <div class="form-group">
+                <label asp-for="RoleName" class="control-label"></label>
+                <input asp-for="RoleName" class="form-control" data-action='@Url.Action("RoleListAction","RoleManegment")' data-search="search" />
+               
+            </div>
+            <div class="form-group">
+
+                <a href="#" class="btn btn-success mt-2" id="btnAddNew" data-action='@Url.Action("AddNew","RoleManegment")' data-container="dvContent" data-modal-id="exampleModal" data-showAddModel="showAddModel">ثبت جدید</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

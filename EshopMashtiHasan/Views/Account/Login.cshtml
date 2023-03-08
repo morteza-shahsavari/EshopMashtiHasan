@@ -1,0 +1,43 @@
+﻿@model Security.Domain.DTO.User.Login
+<div class="account-box-content">
+    <form class="form-account" asp-action="Login" asp-route-returnUrl="@ViewBag.ReturnUrl" asp-controller="Account" method="post">
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <h4 class="text-center h4 text-danger">@ViewBag.ErrorMessage</h4>
+        }
+        <div class="form-account-title">ایمیل یا شماره موبایل</div>
+        <div class="form-account-row">
+            <label asp-for="Username" class="control-label"></label>
+            <input asp-for="Username" class="form-control" />
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+        <div class="form-account-title">
+            رمز عبور
+            <a href="" class="btn-link-border form-account-link">
+                رمز
+                عبور خود را فراموش
+                کرده ام
+            </a>
+        </div>
+        <div class="form-account-row">
+            <label asp-for="Password" class="control-label"></label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-account-row form-account-submit">
+            <div class="parent-btn">
+                <button class="dk-btn dk-btn-info">
+                ورود 
+                    <i class="fa fa-sign-in"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="account-box-footer">
+    <span>کاربر جدید هستید؟</span>
+    <a href="/Account/Create" class="btn-link-border">
+        ثبت‌نام
+    </a>
+</div>

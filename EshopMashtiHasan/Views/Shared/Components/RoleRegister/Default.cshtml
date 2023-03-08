@@ -1,0 +1,29 @@
+﻿@model Security.Domain.DTO.Role.RoleAddModel
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Default" id="frmAddnew">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RoleName" class="control-label"></label>
+                <input asp-for="RoleName" class="form-control" />
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <span type="submit" id="btnAddNew" class="btn btn-primary" data-action='@Url.Action("AddNewRole","RoleManegment")' data-form="frmAddnew" data-method="post"
+                      data-action-BindGrid='@Url.Action("RoleListAction","RoleManegment")' data-action-RefreshGrid='@Url.Action("RoleSearchBoxAction","RoleManegment")'
+                      >ثبت</span>
+
+                
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

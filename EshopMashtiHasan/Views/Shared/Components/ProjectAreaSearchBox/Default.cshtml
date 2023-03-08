@@ -1,0 +1,29 @@
+﻿@model Security.Domain.DTO.ProjectArea.ProjectAreaSearchModel
+
+
+<div class="row">
+    <div class="col-md-4" >
+        <form asp-action="Default" id="frmSearch">
+           
+            <div class="form-group">
+                <label asp-for="AreaName" class="control-label"></label>
+                <input asp-for="AreaName" class="form-control" data-action='@Url.Action("ProjectAreaListAction", "ProjectAreaManegment")' data-search="search" />
+                
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                 <a href="#" class="btn btn-success mt-2" id="btnAddNew"
+                   data-action='@Url.Action("AddNew","ProjectAreaManegment")'
+                   data-container="dvContent" data-modal-id="exampleModal"
+                   data-showAddModel="showAddModel">ثبت جدید</a>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

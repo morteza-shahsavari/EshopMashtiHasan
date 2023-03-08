@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BussinessServiceContract\Shopping.BussinessServiceContract.csproj" />
+    <ProjectReference Include="..\DataAcceServiesContract\Shopping.DataAcceServiesContract.csproj" />
+    <ProjectReference Include="..\DataAccess\Shopping.DataAccess.csproj" />
+    <ProjectReference Include="..\Framework\Framework.csproj" />
+  </ItemGroup>
+
+</Project>

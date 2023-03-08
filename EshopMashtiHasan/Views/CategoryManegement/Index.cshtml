@@ -1,0 +1,130 @@
+﻿@model Shopping.DomainModel.DTO.Category.CategorySearchModel
+
+<div id="dvSearchBox">
+    @await Component.InvokeAsync("CategorySearchBox", this.Model)
+</div>
+<div  id="dvGrid">
+    @await Component.InvokeAsync("CategoryList",this.Model)
+</div>
+
+
+
+@*<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="dvContent">
+                ...
+            </div>
+        </div>
+    </div>
+</div> *@
+
+<script>
+
+    function BindGrid(){
+        var SendingUrl = '@Url.Action("CategoryListAction","CategoryManegement")';
+        var SendingData = $("#frmSearch").serialize();
+        $.get(SendingUrl, SendingData, function (grd) {
+            $("#dvGrid").html(grd);
+        });
+    }
+    function RefreshsearchBox() {
+        var SendingUrl = '@Url.Action("CategorySearchBoxAction","CategoryManegement")';
+        var SendingData = $("#frmSearch").serialize();
+        $.get(SendingUrl, SendingData, function (frmSearch) {
+            $("#dvSearchBox").html(frmSearch);
+        });
+    }
+
+   
+    function AddNew(){
+        const url = $("#btnAddNew").attr("data-action");
+        const container = $("#btnAddNew").attr("data-container");
+        const modal = $("#btnAddNew").attr("data-modal-id");
+        console.log(url);
+        console.log(container);
+        console.log(modal);
+        $.get(url,null,function(rd){
+            $("#"+container).html(rd);
+            $("#" + modal).modal("show");
+        })
+    }
+    $(document).ready(function () {$("#btnAddNew").click(function () {AddNew();  }); });
+    $(document).on("click", "#btnAddNew", function () { AddNew(); });
+    
+        $(document).on("click","#btnAdd",function () {
+            var action = $(this).attr("data-action");
+            var method = $(this).attr("data-method");
+        var formid = "#" + $(this).attr("data-form");
+            if (method === "post") {
+            var sendingData = $(formid).serialize();
+            
+            $.post(action, sendingData, function (op) {
+                if (op.success.toString() == "true") {
+
+                    $("#exampleModal").modal("hide");
+                    ShowSuccessMessage(op.message);
+                    BindGrid();
+                    RefreshsearchBox();
+                    
+                }
+                else {
+                    ShowFailMessage(op.message)
+
+                }
+            });
+            }
+        });
+
+
+
+    function ShowSuccessMessage(msg) {
+        Swal.fire({
+            icon: 'success',
+            title: 'وضعیت ثبت',
+            text: msg,
+        });
+
+    }
+
+    function ShowFailMessage(msg) {
+        Swal.fire({
+            icon: 'error',
+            title: 'وضعیت ثبت',
+            text: msg,
+        });
+
+
+    }
+
+    $(document).on("keyup", "#CategoryName", function () {
+        BindGrid();
+    });
+    $(document).on("change", "#ParentID", function () {
+        BindGrid();
+    });
+    $(document).on("click", ".btnDelete", function () {
+        if (confirm("آیا مطمنید")) {
+            var id = $(this).attr("data-id");
+            var sendingData = "id=" + id;
+            var sendingUrl = '@Url.Action("Delete","CategoryManegement")';
+            $.post(sendingUrl, sendingData, function (op) {
+                if (op.success.toString() == "true") {
+                    var rowID = "#tr_" + id;
+                    $(rowID).slideUp(500);
+                    //SuccessMessage(op.message);
+                   BindGrid();
+                    RefreshsearchBox();
+                }
+                else {
+                    ErrorMessage(op.message);
+                }
+            });
+        }
+
+    });
+</script>
+
